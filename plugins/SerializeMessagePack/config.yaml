@@ -1,0 +1,9 @@
+id: SerializeMessagePack
+name: SerializeMessagePack
+version: 1.00
+description: <__trans phrase="Serialize by Data::MessagePack">
+author_name: <__trans phrase="ToI Inc.">
+author_link: http://tec.toi-planning.net/
+plugin_link: https://github.com/usualoma/mt-plugin-SerializeMessagePack/
+
+init_app: $SerializeMessagePack::SerializeMessagePack::init_app
