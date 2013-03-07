@@ -17,13 +17,15 @@ use MT::Serialize;
 
 sub freeze {
     my ($ref) = @_;
-    'SERG' . Data::MessagePack->pack($$ref);
+    'SERG' . pack( 'N', 0 ) . pack( 'N', 0 ) . Data::MessagePack->pack($$ref);
 }
 
 sub thaw {
     my ($frozen) = @_;
     return \{} unless $frozen && substr( $frozen, 0, 4 ) eq 'SERG';
-    my $obj = Data::MessagePack->unpack( substr( $frozen, 4 ) );
+    my $mp = Data::MessagePack->new();
+    $mp->utf8(1);
+    my $obj = $mp->unpack( substr( $frozen, 12 ) );
     \$obj;
 }
 
